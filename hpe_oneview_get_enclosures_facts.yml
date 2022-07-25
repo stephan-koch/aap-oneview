@@ -2,12 +2,14 @@
 ---
 - hosts: localhost
   gather_facts: true
+  vars:
+    config: '{{  ovconfig_file }}'
 
   tasks:
      
     - name: Gather facts about all Enclosures
       hpe.oneview.oneview_enclosure_facts:
-        config: {{ ovconfig_file }}
+        config: "{{ config }}"
       delegate_to: localhost
 
     - debug: var=enclosures
